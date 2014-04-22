@@ -7,9 +7,5 @@ DooDah.Services.ActivityService.SetUrls({
 	GetActivitiesForMoodUrl: "GetActivitiesForMood.php"
 }); 
 
-DooDah.Service.LoginService.SetUrls({
-	ValidateUserUrl: "LoginService.php"
-}); 
-
 
 })(jQuery, DooDah); 
