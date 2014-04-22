@@ -7,40 +7,46 @@ $(document).ready(function ()
 	var ctrlActivitySummaryView = $("#ctrlActivitySummaryView"); 
 	ctrlActivitySummaryView.ActivityListViewControl({}); 
 	
-	ctrlActivitySummaryView.ActivityListViewControl("SetMoodContext", 6); 
+	var moodValue = -1; 
+	
+	if(userMood == 'afraid')
+	{
+		moodValue = Mood.Afraid; 
+	}
+	else if(userMood == 'lonely')
+	{
+		moodValue = Mood.Lonely; 
+	}
+	else if(userMood == 'sad')
+	{
+		moodValue = Mood.Sad; 
+	}
+	else if(userMood == 'regret')
+	{
+		moodValue = Mood.Regret; 
+	}	
+	else if(userMood == 'dread')
+	{
+		moodValue = Mood.Dread; 
+	}	
+	else if(userMood == 'angry')
+	{
+		moodValue = Mood.Angry; 
+	}	
+	else if(userMood == 'confident')
+	{
+		moodValue = Mood.Confident; 
+	}	
+	else if(userMood == 'happy')
+	{
+		moodValue = Mood.Happy; 
+	}	
+	else 
+	{
+		moodValue = Mood.Anxious; 
+	}
+	
+	ctrlActivitySummaryView.ActivityListViewControl("SetMoodContext", moodValue); 
 	ctrlActivitySummaryView.ActivityListViewControl("LoadAsync");
 	
-/*	var data = {
-		ActivityName: "Walk in the park",
-		LocationInfo: "<p>Central Park</p><p>New York, NY</p>",
-		ImagePath: "./img/sample-images/CentralPark180px.jpg",
-		PriceStars: 4, 
-		Distance: "10 mi"
-	};
-	
-	ctrlActivitySummaryView.ActivitySummaryViewControl("Value", data);
-	
-	
-	var ctrlActivitySummaryView2 = $("#summaryView2"); 
-	ctrlActivitySummaryView2.ActivitySummaryViewControl({}); 
-	
-	ctrlActivitySummaryView2.ActivitySummaryViewControl("Value", data);
-	
-	var btnActivities = $("#btnActivities"); 
-	
-	btnActivities.click(function ()
-	{
-		return DooDah.Services.ActivityService.GetActivitiesForMood("hack")
-			.done(function (data) 
-			{
-				console.log(data); 
-			
-			})
-			.fail(function (data)
-			{
-				alert(data.responseText); 		
-			});
-	}); */ 
-
-
 }); 
