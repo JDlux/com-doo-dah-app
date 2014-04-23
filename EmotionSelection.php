@@ -57,50 +57,50 @@ session_start();
                         <tr>
                             <td>
                                 <div id="mbutton-confident">
-                                    <input type="image" name="confident" value="confident" src="./img/mb/confident.png">
+                                    <input type="image" name="mood" value="confident" src="./img/mb/confident.png">
                                 </div>
                             </td>
                             <td>
                                 <div id="mbutton-happy">
-                                    <input type="image" name="happy" value="happy" src="./img/mb/happy.png">
+                                    <input type="image" name="mood" value="happy" src="./img/mb/happy.png">
                                 </div>
                             </td>
                             <td>
                                 <div id="mbutton-anxious">
-                                    <input type="image" name="anxious" value="anxious" src="./img/mb/anxious.png">
+                                    <input type="image" name="mood" value="anxious" src="./img/mb/anxious.png">
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div id="mbutton-afraid">
-                                    <input type="image" name="afraid" value="afraid" src="./img/mb/afraid.png">
+                                    <input type="image" name="mood" value="afraid" src="./img/mb/afraid.png">
                                 </div>
                             </td>
                             <td>
                                 <div id="mbutton-angry">
-                                    <input type="image" name="angry" value="angry" src="./img/mb/angry.png">
+                                    <input type="image" name="mood" value="angry" src="./img/mb/angry.png">
                                 </div>
                             </td>
                             <td>
                                 <div id="mbutton-dread">
-                                    <input type="image" name="dread" value="dread" src="./img/mb/dread.png">
+                                    <input type="image" name="mood" value="dread" src="./img/mb/dread.png">
                                 </div>
                             </td>
                         <tr>           
                             <td>
                                 <div id="mbutton-lonely">
-                                    <input type="image" name="lonely" value="lonely" src="./img/mb/lonely.png">
+                                    <input type="image" name="mood" value="lonely" src="./img/mb/lonely.png">
                                 </div>
                             </td>
                             <td>
                                 <div id="mbutton-regret">
-                                    <input type="image" name="regret" value="regret" src="./img/mb/regret.png">
+                                    <input type="image" name="mood" value="regret" src="./img/mb/regret.png">
                                 </div>
                             </td>
                             <td>
                                 <div id="mbutton-sad">
-                                    <input type="image" name="sad" value="sad" src="./img/mb/sad.png">
+                                    <input type="image" name="mood" value="sad" src="./img/mb/sad.png">
                                 </div>
                             </td>
                         </tr>

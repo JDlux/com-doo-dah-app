@@ -4,6 +4,11 @@ if(!isset($_SESSION['UserId']))
 {
 	header("Location: Logout.php"); 
 }
+else
+{
+	$mood = $_POST["mood"];
+	echo "<script> var userMood = '".$mood."'</script>"; 
+}
 ?>
 
 
