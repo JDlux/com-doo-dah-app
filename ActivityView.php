@@ -66,7 +66,7 @@ else
 					<div id="pnlFilterControl"></div>
 					<div id="result-list">
 						<div id="ctrlActivitySummaryView" class="activity-list-item"></div>
-						<div id="summaryView2" class="activity-list-item"></div>
+						<a href="./EmotionSelection.php"><h1 id="link-return-emotions">Return to Emotions</h1></a>
 					</div>
 			</div>
 		</div>

@@ -48,5 +48,4 @@ $(document).ready(function ()
 	
 	ctrlActivitySummaryView.ActivityListViewControl("SetMoodContext", moodValue); 
 	ctrlActivitySummaryView.ActivityListViewControl("LoadAsync");
-	
 }); 
