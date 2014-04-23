@@ -57,6 +57,4 @@ $(document).ready(function (){
 	loginLink.on("mouseleave", login_leave);
 	subMenu.on("mouseenter", sub_enter); 
 	subMenu.on("mouseleave", sub_leave);
-
-
 }); 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 15, 2014 at 02:44 AM
+-- Generation Time: Apr 23, 2014 at 03:12 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -13,14 +13,14 @@ SET time_zone = "+00:00";
 --
 -- Database: `appdoodah`
 --
+CREATE DATABASE IF NOT EXISTS `appdoodah` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `appdoodah`;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Activity`
 --
-
-Use appdoodah; 
 
 CREATE TABLE `Activity` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -34,18 +34,25 @@ CREATE TABLE `Activity` (
   `Description` varchar(45) NOT NULL,
   `ActivityDate` datetime NOT NULL,
   `VenueName` varchar(45) DEFAULT NULL,
+  `ImagePath` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `Activity`
 --
 
-INSERT INTO `Activity` (`Id`, `Name`, `Cost`, `City`, `State`, `Zip`, `LocationType`, `PopularityIndex`, `Description`, `ActivityDate`, `VenueName`) VALUES
-(1, 'Grab a Drink', 'Medium', 'New Rochelle', 'NY', '10801', 'Public', '10', 'Usually achieved at a local bar or in the com', '0000-00-00 00:00:00', 'Bar, Home'),
-(2, 'Go to the Movies', 'Medium', 'White Plains', 'NY', '10604', 'Public', '9', 'Watch a movie at the theater', '0000-00-00 00:00:00', 'Movie Theater'),
-(3, 'Walk in the park', 'Free', 'New York', 'NY', '10019', 'Public ', '10', 'Huge park in the middle of NYC!', '2014-05-01 00:00:00', 'Park'),
-(4, 'Bike on a trail', 'Free', 'New Rochelle', 'NY', '10801', 'Public', '7', 'Nature Study backwoods trail, travel through ', '2014-05-01 00:00:00', 'Nature Study Woods');
+INSERT INTO `Activity` (`Id`, `Name`, `Cost`, `City`, `State`, `Zip`, `LocationType`, `PopularityIndex`, `Description`, `ActivityDate`, `VenueName`, `ImagePath`) VALUES
+(1, 'Grab a Drink', 'Medium', 'New Rochelle', 'NY', '10801', 'Public', '10', 'Usually achieved at a local bar or in the com', '0000-00-00 00:00:00', 'Bar, Home', './img/sample-images/360px-Belgian_beer_glass.jpg'),
+(2, 'Go to the Movies', 'Medium', 'White Plains', 'NY', '10604', 'Public', '9', 'Watch a movie at the theater', '0000-00-00 00:00:00', 'Movie Theater', './img/sample-images/640px-Regal_Cinemas_Imax_Theatre.jpg'),
+(3, 'Walk in the park', 'Free', 'New York', 'NY', '10019', 'Public ', '10', 'Huge park in the middle of NYC!', '2014-05-01 00:00:00', 'Central Park', './img/sample-images/640px-Central_Park_NYC_1.jpg'),
+(4, 'Bike on a trail', 'Free', 'New Rochelle', 'NY', '10801', 'Public', '7', 'Nature Study backwoods trail, travel through ', '2014-05-01 00:00:00', 'Nature Study Woods', './img/sample-images/BikeTrail.JPG'),
+(5, 'Go to the MOMA', 'Low', 'New York', 'NY', '10087', 'Public', '10', 'The Metropolitan Museum of Art, need we say m', '0000-00-00 00:00:00', 'MOMA', './img/sample-images/576px-MoMa_NY_USA_1.jpg'),
+(6, 'Play Basketball', 'Free', 'New York', 'NY', '10013', 'Public', '10', 'Outdoor streetball, most popular in the sprin', '0000-00-00 00:00:00', 'Basketball', './img/sample-images/512px-Barack_Obama_plays_basketball_with_Arne_Dunc'),
+(7, 'Go for a Hike', 'Free', 'Saratoga', 'NY', '34567', 'Public', '6', 'Hike in the beautiful hills of Saratoga', '0000-00-00 00:00:00', 'Mountains', './img/sample-images/640x480_Hike.jpg'),
+(8, 'Read a Book', 'Free', 'New York', 'NY', '10098', 'Various', '8', 'Read a book in a serene place', '0000-00-00 00:00:00', 'Various', './img/sample-images/640px-Book_deckle_01.jpg'),
+(9, 'Play Golf', 'High', 'White Plains', 'NY', '10604', 'Public', '7', 'Play a round of golf', '0000-00-00 00:00:00', 'Golf Course', './img/sample-images/Golf_course,_Italy_-_20070620.jpg'),
+(10, 'Ride the Ferry', 'Free', 'New York', 'NY', '10012', 'Public', '8', 'Ride the Staten Island Ferry', '0000-00-00 00:00:00', 'Staten Island Ferry', './img/sample-images/USA-NYC-Staten_Island_Ferry.JPG');
 
 -- --------------------------------------------------------
 
@@ -74,6 +81,7 @@ INSERT INTO `Activity_has_Mood` (`Activity_Id`, `Mood_Id`) VALUES
 (2, 6),
 (3, 6),
 (4, 6),
+(10, 6),
 (1, 7),
 (2, 7),
 (3, 7),
@@ -158,14 +166,15 @@ CREATE TABLE `User` (
   `Password` varchar(45) DEFAULT NULL,
   `DateAdded` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `User`
 --
 
 INSERT INTO `User` (`Id`, `FirstName`, `LastName`, `Email`, `UserName`, `Password`, `DateAdded`) VALUES
-(1, 'chris', 'forehand', 'cforehand@iona.edu', 'cforehand', 'test', NULL);
+(1, 'chris', 'forehand', 'cforehand@iona.edu', 'cforehand', 'test', NULL),
+(2, 'john', 'doe', 'jdoe@iona.edu', 'jdoe', 'test', NULL);
 
 -- --------------------------------------------------------
 
@@ -216,6 +225,17 @@ CREATE TABLE `User_has_Activity` (
   KEY `User_Id` (`User_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `User_has_Activity`
+--
+
+INSERT INTO `User_has_Activity` (`User_Id`, `Activity_Id`, `IsCompleted`, `DateCompleted`) VALUES
+(1, 2, 'True', '2014-04-03 00:00:00'),
+(1, 4, 'True', '2014-04-09 00:00:00'),
+(1, 1, 'True', '2014-04-10 00:00:00'),
+(1, 3, 'True', '2014-04-16 00:00:00'),
+(2, 3, 'True', '2014-04-16 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -231,6 +251,15 @@ CREATE TABLE `User_has_Mood` (
   KEY `fk_User_has_Mood_User1_idx` (`User_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `User_has_Mood`
+--
+
+INSERT INTO `User_has_Mood` (`User_Id`, `Mood_Id`, `MoodDate`) VALUES
+(1, 1, '2013-12-31 12:30:56'),
+(1, 3, '2014-01-25 06:45:12'),
+(1, 5, '2013-11-02 07:32:51');
+
 -- --------------------------------------------------------
 
 --
@@ -245,6 +274,14 @@ CREATE TABLE `User_has_UserPreferences` (
   KEY `fk_User_has_UserPreferences_UserPreferences1_idx` (`UserPreferences_Id`),
   KEY `fk_User_has_UserPreferences_User1_idx` (`User_Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `User_has_UserPreferences`
+--
+
+INSERT INTO `User_has_UserPreferences` (`User_Id`, `UserPreferences_Id`, `Value`) VALUES
+(1, 4, 'Yes'),
+(1, 9, 'No');
 
 --
 -- Constraints for dumped tables
