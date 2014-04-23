@@ -1,6 +1,18 @@
+/*
+
+\brief This is a jQuery widget written in JavaScript for Registration Control
+\author Chris Forehand
+\date 3/20/14
+\verbatim
+	Test Cases: 
+	
+\endverbatim
+
+*/
+
 var DooDah = window.DooDah || {}; 
 
-(function ($, dd)
+(function ($, dd, undefined)
 {
     //  ------------------------------------------------------------------------------------------------
     // Options for the widget
@@ -8,6 +20,9 @@ var DooDah = window.DooDah || {};
     
     var _options = {
         DataManager: null,
+        IsLoginControl: false,
+        LinkRegistration: null, 
+        LinkForgotPassword: null
     };
 
     //  ------------------------------------------------------------------------------------------------
@@ -17,7 +32,6 @@ var DooDah = window.DooDah || {};
     {
         var self = this;
         var elm = self.element;
-        var options = self.options;
         
         var _strings = {
         	LabelFirstName: "First Name:",
@@ -25,20 +39,30 @@ var DooDah = window.DooDah || {};
         	LabelEmail: "Email:",
         	LabelUserName: "Username:",
         	LabelPassword: "Password:",
-        	ButtonSubmit: "Register", 
-        	ButtonCancel: "Cancel"
+        	ButtonRegister: "Register", 
+        	ButtonCancel: "Cancel",
+        	ButtonLogin: "Login"
         }; 
 
         //  ------------------------------------------------------------------------------------------------
         // Instance (global) variables.
         //  ------------------------------------------------------------------------------------------------
  
-        var _foo = options.Foo;
-
+        var _isLoginControl = self.options.IsLoginControl; 
+        var _dataManager = self.options.DataManager; 
+        var _lnkRegistration = self.options.LinkRegistration != null ? self.options.LinkRegistration : '#'; 
+        var _lnkForgotPassword = self.options.LinkForgotPassword != null ? self.options.LinkForgotPassword : '#'; 
+      
+        /*if(_dataManager == null)
+    	{
+    		throw new Error ("Data manager is required"); 
+    	}*/
+        
         //  ------------------------------------------------------------------------------------------------
         // UI elements.
         //  ------------------------------------------------------------------------------------------------        
         var pnlContainer = null;
+        var pnlErrorContainer = null; 
         var txtFirstName = null; 
         var lblFirstName = null; 
         var txtLastName = null; 
@@ -52,6 +76,9 @@ var DooDah = window.DooDah || {};
         var pnlButtonContainer = null; 
         var btnSubmit = null; 
         var btnCancel = null; 
+        var pnlForgotPassword = null; 
+        var lnkForgotPassword = null; 
+        var lnkRegisterAccount = null; 
         
         //  ------------------------------------------------------------------------------------------------
         // Initialization code.
@@ -64,6 +91,10 @@ var DooDah = window.DooDah || {};
             pnlContainer = $("<div />")
                 .addClass("pnl-container")
                 .appendTo(elm);
+                
+            pnlErrorContainer = $("<div />")
+            	.addClass("pnl-error-container")
+            	.appendTo(pnlContainer); 
                 
             txtFirstName =$("<input type='text' />")
                 .addClass("reg-form-input")
@@ -121,18 +152,118 @@ var DooDah = window.DooDah || {};
             
             btnSubmit = $("<button id ='btnSubmit' type='button' />")
             	.addClass("btn-form")
-            	.html(_strings.ButtonSubmit)
+            	.click(btnSubmit_click)
             	.appendTo(pnlButtonContainer); 
             	
             btnCancel = $("<button id='btnCancel' type='button' />")
             	.addClass("btn-form")
             	.html(_strings.ButtonCancel)
-            	.appendTo(pnlButtonContainer);    	  	
+            	.click(btnCancel_click)
+            	.appendTo(pnlButtonContainer);  
+            
+            pnlForgotPassword = $("<div />")
+            	.addClass("pnl-forgot-password")
+            	.appendTo(pnlContainer); 
+            
+            lnkRegisterAccount = $("<a href='" + _lnkRegistration + "'>Register Account</a>")
+        	.addClass("lnk-register-account")
+        	.appendTo(pnlForgotPassword)
+        	.hide(); 
+            
+            lnkForgotPassword = $("<a href='#'>Forgot Password?</a>")
+            	.addClass("lnk-forgot-password")
+            	.appendTo(pnlForgotPassword)
+            	.hide(); 
+            
+            if(_isLoginControl)
+        	{
+            	lblFirstName.hide();
+            	lblLastName.hide(); 
+            	lblEmail.hide(); 
+            	lnkForgotPassword.show();
+            	lnkRegisterAccount.show();
+        	}
+            
+        	SetSubmitLabel(); 
         };
 
-        var txtFoo_click = function (evt)
+        var SetSubmitLabel = function ()
         {
-            alert("Click");
+        	if(_isLoginControl)
+        	{
+        		btnSubmit.html(_strings.ButtonLogin); 
+        	}
+        	else
+        	{
+        		btnSubmit.html(_strings.ButtonRegister); 
+        	}
+        }; 
+        
+        var ValidateInputs = function (credentials)
+        {
+        	var username = credentials.UserName; 
+        	var password = credentials.Password; 
+        	
+        	if(username == null || username === "")
+        	{
+        		pnlErrorContainer.html("Please enter a valid username!"); 
+        		return false; 
+        	}
+        	
+        	if(password == null || password == "")
+        	{
+        		pnlErrorContainer.html("Please enter a valid password!"); 
+        		return false;
+        	}
+        	
+        	return true; 	
+        }
+        
+        var btnCancel_click = function ()
+        {	
+        	window.location.href = "HomeView.php"; 
+        }
+                
+        var ClearValidationPanel = function ()
+        {
+            pnlErrorContainer.html(""); 
+        }
+        
+        var btnSubmit_click = function ()
+        {
+            ClearValidationPanel(); 
+            
+            var username = $.trim(txtUserName.val());
+            var password = $.trim(txtPassword.val()); 
+        	
+        	var credentials =  { 
+            	UserName: username,
+            	Password: password 
+            }; 
+            
+            if(ValidateInputs(credentials))
+            {
+				var onSuccess = function (data, status, jqxhr)
+				{
+					window.location.href = data; 
+				}
+            
+				var onError = function (data, status, jqxhr)
+				{
+					console.log(data); 
+				}
+            
+				return $.ajax({
+					type: "POST", 
+					url: "./Login.php",
+					accepts: "text/html", 
+					async: true, 
+					data: credentials,
+					contentType: "application/x-www-form-urlencoded",
+					success: onSuccess, 
+					error: onError
+				});
+            }
         };
 
         var Value = function ()
@@ -153,15 +284,14 @@ var DooDah = window.DooDah || {};
         {
             // Put the widget into some neutral state.
         };
-        
-        Init();
-        
+
         //  ------------------------------------------------------------------------------------------------
         // Public methods
         //  ------------------------------------------------------------------------------------------------
-        
         self.Value = Value;
         self.Clear = Clear;
+        
+        Init();
     };
 
     //  ------------------------------------------------------------------------------------------------

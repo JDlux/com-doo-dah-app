@@ -1,5 +1,6 @@
-$(document).ready(function(){
-	
+$(document).ready(function (){
+
+
 	var login_leave = function (e)
 	{	
 		clearTimeout(); 
@@ -51,8 +52,11 @@ $(document).ready(function(){
 	var loginLink = $("#account"); 
 	var subMenu = $("#sub-menu").hide(); 
 	
+	// event binders for entering navigation menus 
 	loginLink.on("mouseenter", login_enter); 
 	loginLink.on("mouseleave", login_leave);
 	subMenu.on("mouseenter", sub_enter); 
 	subMenu.on("mouseleave", sub_leave);
+
+
 }); 
