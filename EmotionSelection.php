@@ -3,7 +3,6 @@ session_start();
     if(isset($_SESSION['UserId']))
     {
     	include("const_db.inc");
-    	date_default_timezone_set('Australia/Melbourne');
 
 		// establish connection to db
 		$dblink = mysqli_connect('localhost', $username, $password, $dbname)
