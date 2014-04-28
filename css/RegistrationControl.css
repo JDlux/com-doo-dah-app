@@ -65,6 +65,15 @@
 	position: relative;
 	height: 20px; 
 	width: 100%; 
-	color: red; 
 	padding-bottom: 10px; 
+}
+
+.emotion-registration-control .error
+{
+	color: red;
+}
+
+.emotion-registration-control .success
+{
+	color: green;
 }

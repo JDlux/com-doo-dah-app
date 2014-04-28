@@ -24,27 +24,27 @@ DooDah.Services.LoginService = (function (dd, $)
 			async: true, 
 			data: credentials,
 			accept: "application/json", 
-			contentType: "application/x-www-form-urlencoded"
+			contentType: "application/x-www-form-urlencoded",
+			dataType: "json"
 		}); 
 	}
 
 
-	var GetActivitiesForMood = function (moodVal)
+	var CreateUser = function (details)
 	{
 		return $.ajax({
-			type: "GET",
-			url: _getActivitiesForMoodUrl, 
-			data: { Mood: moodVal }, 
+			type: "POST",
+			url: _createUserUrl, 
+			data: details, 
 			async: true, 
-			accept: "application/json",
-			dataType: "json"
+			accept: "application/x-www-form-urlencoded"
 		}); 
 	}
 
 	return {
 		SetUrls: SetUrls,
 		ValidateUser: ValidateUser, 
-		GetActivitiesForMood: GetActivitiesForMood
+		CreateUser: CreateUser
 	}; 
 
 })(DooDah, jQuery);  

@@ -94,6 +94,7 @@ var DooDah = window.DooDah || {};
                 
             pnlErrorContainer = $("<div />")
             	.addClass("pnl-error-container")
+            	.addClass("error")
             	.appendTo(pnlContainer); 
                 
             txtFirstName =$("<input type='text' />")
@@ -201,22 +202,65 @@ var DooDah = window.DooDah || {};
         
         var ValidateInputs = function (credentials)
         {
-        	var username = credentials.UserName; 
-        	var password = credentials.Password; 
-        	
-        	if(username == null || username === "")
+        	if(!_isLoginControl)
         	{
-        		pnlErrorContainer.html("Please enter a valid username!"); 
-        		return false; 
+        		var firstName = credentials.FirstName;
+        		var lastName = credentials.LastName;
+        		var email = credentials.Email;
+        		var newUser = credentials.UserName;
+        		var newPassword = credentials.Password;
+        		
+        		if(firstName == null || firstName === "")
+				{
+					pnlErrorContainer.html("Please provide your first name"); 
+					return false; 
+				}
+				
+				if(lastName == null || lastName === "")
+				{
+					pnlErrorContainer.html("Please provide your last name"); 
+					return false; 
+				}				
+				
+				if(email == null || email === "")
+				{
+					pnlErrorContainer.html("Please provide your email address"); 
+					return false; 
+				}       		
+        		
+        		if(newUser == null || newUser === "")
+				{
+					pnlErrorContainer.html("Please enter a username!"); 
+					return false; 
+				}
+				
+				if(newPassword == null || newPassword == "")
+				{
+					pnlErrorContainer.html("Please enter a password!"); 
+					return false;
+				}
+				
+				return true; 
         	}
-        	
-        	if(password == null || password == "")
+        	else
         	{
-        		pnlErrorContainer.html("Please enter a valid password!"); 
-        		return false;
+				var username = credentials.UserName; 
+				var password = credentials.Password; 
+			
+				if(username == null || username === "")
+				{
+					pnlErrorContainer.html("Please enter a valid username!"); 
+					return false; 
+				}
+			
+				if(password == null || password == "")
+				{
+					pnlErrorContainer.html("Please enter a valid password!"); 
+					return false;
+				}
+			
+				return true; 	
         	}
-        	
-        	return true; 	
         }
         
         var btnCancel_click = function ()
@@ -231,58 +275,83 @@ var DooDah = window.DooDah || {};
         
         var btnSubmit_click = function ()
         {
+            var credentials = Value(); 
             ClearValidationPanel(); 
-            
-            var username = $.trim(txtUserName.val());
-            var password = $.trim(txtPassword.val()); 
-        	
-        	var credentials =  { 
-            	UserName: username,
-            	Password: password 
-            }; 
-            
+                        
             if(ValidateInputs(credentials))
             {
-				var onSuccess = function (data, status, jqxhr)
+				if(!_isLoginControl)
 				{
-					window.location.href = data; 
+					return DooDah.Services.LoginService.CreateUser(credentials)
+						.done(function (data, status, jqxhr) 
+						{
+							Clear(); 
+							pnlErrorContainer.removeClass("error").addClass("success");
+							pnlErrorContainer.html("Account created! Click <b><a href='./HomeView.php'>here</a></b> to Login"); 
+						})
+						.error(function (data, status, jqxhr)
+						{
+							console.log("Error" + status); 
+						}); 
 				}
-            
-				var onError = function (data, status, jqxhr)
+				else
 				{
-					console.log(data); 
+					var onSuccess = function (data, status, jqxhr)
+					{
+						window.location.href = data; 
+					}
+			
+					var onError = function (data, status, jqxhr)
+					{
+						console.log(data); 
+					}
+			
+					return $.ajax({
+						type: "POST", 
+						url: "./Login.php",
+						accepts: "text/html", 
+						async: true, 
+						data: credentials,
+						contentType: "application/x-www-form-urlencoded",
+						success: onSuccess, 
+						error: onError
+					});
 				}
-            
-				return $.ajax({
-					type: "POST", 
-					url: "./Login.php",
-					accepts: "text/html", 
-					async: true, 
-					data: credentials,
-					contentType: "application/x-www-form-urlencoded",
-					success: onSuccess, 
-					error: onError
-				});
             }
         };
 
         var Value = function ()
-        {
-            /// <summary>Gets the selected media outlet.</summary>
-
-            var value = null;
-
-            if (txtFoo != null)
-            {
-                value = txtFoo.val();
-            }
-
-            return value;
+        {			
+			if(!_isLoginControl)
+			{	
+				return {
+					FirstName: $.trim(txtFirstName.val()),
+					LastName: $.trim(txtLastName.val()),
+					Email: $.trim(txtEmail.val()),
+					UserName: $.trim(txtUserName.val()),
+					Password: $.trim(txtPassword.val())
+				};
+			}
+			else
+			{
+				return {
+					UserName: $.trim(txtUserName.val()),
+					Password: $.trim(txtPassword.val())
+				};	
+			}
         };
         
         var Clear = function ()
         {
-            // Put the widget into some neutral state.
+            if(!_isLoginControl)
+            {
+            	txtFirstName.val(""); 
+            	txtLastName.val(""); 
+            	txtEmail.val(""); 
+            }
+			
+			txtUserName.val(""); 
+			txtPassword.val(""); 
         };
 
         //  ------------------------------------------------------------------------------------------------
