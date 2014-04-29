@@ -1,0 +1,65 @@
+.pnl-admin-tools
+{
+	position: relative;
+	height: auto;
+	width: auto; 
+	min-height: 600px; 
+	background-color: black; 
+}
+
+.pnl-add-user,
+.pnl-delete-user
+{
+	position: absolute;
+	height: auto;
+	width: 350px;
+	background-color: white;
+	top: 65px;
+	left: 400px;
+	padding: 8px; 
+}
+
+.pnl-logout
+{
+	position: relative;
+	height: 36px;
+	width: 100%;
+}
+
+.link-logout
+{
+	position: relative; 
+	float: right;
+	font-weight: bold;
+	font-size: 29px;
+	color: red;
+}
+
+.admin-reg-form-label
+{
+	display: block;
+	height: 48px;
+	font-weight: bold;
+	font-size: 14px;
+	width: 322px;
+}
+
+.admin-reg-form-input
+{
+	position: absolute;
+	left: 122px;
+	width: 200px;
+	height: 18px;
+	font-size: 14px;
+}
+
+.admin-links
+{
+	position: relative; 
+	color: yellow;
+	text-decoration: underline;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 20px;
+	padding-bottom: 27px;
+}

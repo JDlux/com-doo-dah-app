@@ -26,7 +26,15 @@ if(isset($_POST['UserName']) && isset($_POST['Password']))
 		{
 			$obj = mysqli_fetch_object($queryForUser);
 			$_SESSION['UserId'] = $obj->Id; 
-			echo "EmotionSelection.php"; 
+			
+			if($obj->AccountType == 1)
+			{
+				echo "AdministratorView.php"; 
+			}
+			else
+			{
+				echo "EmotionSelection.php"; 
+			}
 		}
 		else
 		{
