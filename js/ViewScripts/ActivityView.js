@@ -1,7 +1,7 @@
 $(document).ready(function () 
 {	
-	var pnlFilterControl = $("#pnlFilterControl"); 
-	pnlFilterControl.FilterControl({}); 
+	//var pnlFilterControl = $("#pnlFilterControl"); 
+	//pnlFilterControl.FilterControl({}); 
 	
 	
 	var ctrlActivitySummaryView = $("#ctrlActivitySummaryView"); 
