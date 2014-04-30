@@ -31,7 +31,7 @@ class Activity
 
 	public function __get($name)
 	{
-		// comment ddsss
+		// comment dd
 		return $this->$name; 
 	}
 	
