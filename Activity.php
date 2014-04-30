@@ -34,6 +34,7 @@ class Activity
 		// comment dd
 		// new comment
 		// new comment
+		// new comment
 		return $this->$name; 
 	}
 	
