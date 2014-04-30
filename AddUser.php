@@ -35,7 +35,8 @@ include("const_db.inc");
 	}
 	else
 	{
-		echo "Added"; 
+		echo "User ".$firstName." ".$lastName." was added successfully"; 
+		echo "<p><a href='AdministratorView.php'>Return to Administrator Portal</a></p>"; // just changed
 	}
 	
 	mysqli_close($link);

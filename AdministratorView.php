@@ -10,11 +10,11 @@ if(!isset($_SESSION['UserId']))
 <html>
 	<head>
 		<title>Doo-Dah - Administrator Portal</title>
-		<script type="text/javascript" src="./js/jquery-1.11.0.js"></script>
-		<script type="text/javascript" src="./js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
-		<script type="text/javascript" src="./js/Enums.js"></script>
-		<script type="text/javascript" src="./js/ViewScripts/Admin.js"></script>	
-		<link rel="stylesheet" type="text/css" href="./css/Admin.css"/>
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+		<script type="text/javascript" src="js/Enums.js"></script>
+		<script type="text/javascript" src="js/ViewScripts/Admin.js"></script>	
+		<link rel="stylesheet" type="text/css" href="css/Admin.css"/>
 
 	</head>
 

@@ -28,7 +28,7 @@ $(document).ready(function ()
 		var pnlAddUserForm = $("<form name='input' action='AddUser.php' method='post'></form>")
 			.appendTo(pnlAddUser);  
 			
-		txtFirstName = $("<input type='text'/>")
+		txtFirstName = $("<input type='text' name='FirstName'/>")
 			.addClass("admin-reg-form-input")
 			.appendTo(pnlAddUserForm);
 			
@@ -38,7 +38,7 @@ $(document).ready(function ()
 			.appendTo(pnlAddUserForm)
 			.append(txtFirstName); 
 			
-		txtLastName = $("<input type='text'/>")
+		txtLastName = $("<input type='text' name='LastName'/>")
 			.addClass("admin-reg-form-input")
 			.appendTo(pnlAddUserForm); 
 			
@@ -48,7 +48,7 @@ $(document).ready(function ()
 			.appendTo(pnlAddUserForm)
 			.append(txtLastName); 
 			
-		txtEmail = $("<input type='text'/>")
+		txtEmail = $("<input type='text' name='Email'/>")
 			.addClass("admin-reg-form-input")
 			.appendTo(pnlAddUserForm); 
 			
@@ -58,7 +58,7 @@ $(document).ready(function ()
 			.appendTo(pnlAddUserForm)
 			.append(txtEmail); 
 			
-		txtUsername = $("<input type='text'/>")
+		txtUsername = $("<input type='text' name='UserName'/>")
 			.addClass("admin-reg-form-input")
 			.appendTo(pnlAddUserForm); 
 			
@@ -68,7 +68,7 @@ $(document).ready(function ()
 			.appendTo(pnlAddUserForm)
 			.append(txtUsername); 
 
-		txtPassword = $("<input type='password'/>")
+		txtPassword = $("<input type='password' name='Password'/>")
 			.addClass("admin-reg-form-input")
 			.appendTo(pnlAddUserForm); 
 			
@@ -103,15 +103,15 @@ $(document).ready(function ()
 		var pnlDeleteUserForm = $("<form name='input' action='DeleteUser.php' method='post'></form>")
 			.appendTo(pnlDeleteUser);  
 			
-		txtDeleteUser = $("<input type='text' />")
+		txtDeleteUser = $("<input type='text' name='Username'/>")
 			.addClass("admin-reg-form-input")
-			.appendTo(); 
+			.appendTo(pnlDeleteUserForm); 
 			
 		var lblDeleteUser = $("<label/>")
 			.addClass("admin-reg-form-label")
 			.html("Delete Username:")
 			.appendTo(pnlDeleteUserForm)
-			.append(txtFirstName); 
+			.append(txtDeleteUser); 
 		
 		var submit = $("<input type='submit' value='Delete User'>")
 			.appendTo(pnlDeleteUserForm); 

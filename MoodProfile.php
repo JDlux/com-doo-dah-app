@@ -11,11 +11,11 @@
 <html>
     <head>
         <title>Doo-Dah - Mood Profile</title>
-        <script src="./js/jquery-1.11.0.js"></script>
-        <script src="./js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
-        <script type="text/javascript" src="./js/ViewScripts/General.js"></script>
-        <link rel="stylesheet" type="text/css" href="./css/General.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/MoodProfileView.css"/>
+        <script src="js/jquery-1.11.0.js"></script>
+        <script src="js/jquery-ui-1.10.4/ui/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/ViewScripts/General.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/General.css"/>
+        <link rel="stylesheet" type="text/css" href="css/MoodProfileView.css"/>
     </head>
 
     <body>
@@ -26,11 +26,11 @@
                         <ul>
                             <!--<li class="top-level"><a href="./HomeView.php" id="home">Home</a></li>-->
                             <li class="top-level"><a href="#" id="how" title="Take the tutorial if you are a newcomer or view help documentation.">How it works?</a></li>
-                            <li class="top-level"><a href="./EmotionSelection.php" id="emotions" title="Pick your current emotion to view new activities.">Emotions</a></li>
-                            <li class="top-level"><a href="./ActivityView.php" id="activities" title="View your recent, favorite, or trending activities.">Activities</a></li>
+                            <li class="top-level"><a href="EmotionSelection.php" id="emotions" title="Pick your current emotion to view new activities.">Emotions</a></li>
+                            <li class="top-level"><a href="ActivityView.php" id="activities" title="View your recent, favorite, or trending activities.">Activities</a></li>
                             <li class="top-level"><a href="#" id="account">My Account</a>
                                 <ul id="sub-menu">
-                                    <li class="sub-level"><a href="./Logout.php" id="login" title="Log in if you already have an account.">Logout</a></li>
+                                    <li class="sub-level"><a href="Logout.php" id="login" title="Log in if you already have an account.">Logout</a></li>
                                     <!--<li class="sub-level"><a href="./RegistrationView.php" id="new-user" title="New users, register here">Sign up</a></li>-->
                                     <!--<li class="sub-level"><a href="#" id="forgot-password" title="Forgot your password?">Forgot password</a></li>-->
 
